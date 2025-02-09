@@ -8,7 +8,10 @@ class Program
         int n = 10; 
         Console.WriteLine("Números primos en la serie de Fibonacci:");
         ImprimirPrimosFibonacci(n);
-        
+
+        Console.Write("Ingrese la cantidad de segundos: ");
+        int segundos = int.Parse(Console.ReadLine());
+        string tiempoFormateado = FormatoTiempo(segundos);
     }
     static void ImprimirPrimosFibonacci(int n)
     {
@@ -36,4 +39,14 @@ class Program
             return true;
         }
     }
-}
+
+        static string FormatoTiempo(int segundos)
+        {
+            int horas = segundos / 3600;
+            int minutos = (segundos % 3600) / 60;
+            int segs = segundos % 60;
+            string resultado = string.Format("{0:D2}:{1:D2}:{2:D2}", horas, minutos, segs);
+            Console.WriteLine("FormatoTiempo: " + resultado);
+            return resultado;
+        }
+    }
