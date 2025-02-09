@@ -1,0 +1,34 @@
+using System;
+class ProgramaChance
+{
+    static void Main()
+    {
+        Random random = new Random();
+        int numeroGanador = random.Next(1000, 10000);
+
+        Console.WriteLine("Ingresa un numero de 4 digitos: ");
+        int numeroApuesta;
+
+        string entrada = Console.ReadLine();
+        while (!int.TryParse(entrada, out numeroApuesta) || numeroApuesta < 1000 || numeroApuesta > 9999)
+        {
+            Console.WriteLine("Numero invalido. Ingresa un numero de 4 digitos");
+            entrada = Console.ReadLine();
+
+        }
+
+        Console.WriteLine("Has apostado 1000$ al numero: " + numeroApuesta);
+
+        Console.WriteLine("El número ganador del sorteo es: " + numeroGanador);
+
+        if (numeroApuesta == numeroGanador)
+        {
+            Console.WriteLine("¡Felicidades! Has ganado.");
+        }
+        else
+        {
+            Console.WriteLine("Lo sentimos. No has ganado.");
+        }
+    }
+}
+
