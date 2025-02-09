@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 class ProgramaChance
 {
     static void Main()
@@ -21,13 +22,57 @@ class ProgramaChance
 
         Console.WriteLine("El número ganador del sorteo es: " + numeroGanador);
 
-        if (numeroApuesta == numeroGanador)
+
+        int Premio = CalcularPremio(numeroApuesta, numeroGanador, 1000);
+
+        if (Premio > 0)
         {
-            Console.WriteLine("¡Felicidades! Has ganado.");
+            Console.WriteLine("¡Felicidades! Has ganado un premio de:" + Premio);
         }
         else
         {
-            Console.WriteLine("Lo sentimos. No has ganado.");
+            Console.WriteLine("Lo sentimos, no has ganado.");
+        }
+
+
+        static int CalcularPremio(int apuesta, int ganador, int montoApostado)
+        {
+            string apuestaStr = apuesta.ToString();
+            string ganadorStr = ganador.ToString();
+
+            if (apuesta == ganador)
+            {
+                return montoApostado * 4500;
+            }
+            else if (TieneCifrasDesordenadas(apuestaStr, ganadorStr))
+            {
+                return montoApostado * 200;
+
+            }
+            else if (apuestaStr.Substring(1) == ganadorStr.Substring(1))
+            {
+                return montoApostado * 400;
+
+            }
+            else if (apuestaStr.Substring(2) == ganadorStr.Substring(2))
+            {
+                return montoApostado * 50;
+            }
+            else if (apuestaStr.Substring(3) == ganadorStr.Substring(3))
+            {
+                return montoApostado * 5;
+            }
+            return 0;
+        }
+        static bool TieneCifrasDesordenadas(string apuesta, string ganador)
+        {
+            char[] arrApuesta = apuesta.ToCharArray();
+            char[] arrGanador = ganador.ToCharArray();
+
+            Array.Sort(arrApuesta);
+            Array.Sort(arrGanador);
+
+            return new string(arrApuesta) == new string(arrGanador);
         }
     }
 }
