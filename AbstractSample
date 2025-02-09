@@ -1,0 +1,22 @@
+using System;
+
+
+abstract class AbstractSample
+{
+    private string message;
+
+    public AbstractSample(string msg)
+    {
+        message = msg;
+    }
+
+    public abstract void PrintMessage(string msg);
+
+    public virtual void InvertMessage(string msg)
+    {
+        char[] charArray = message.ToCharArray();
+        Array.Reverse(charArray);
+        message = new string(charArray);
+    }
+   
+    }
